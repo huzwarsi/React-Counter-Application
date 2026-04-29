@@ -118,19 +118,39 @@
 // App.jsx
 
 // App.jsx
-
 import React, { useState } from "react";
 import "./App.css";
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [bgColor, setBgColor] = useState("#000");
 
-  const Increment = () => setCount(count + 1);
-  const Decrement = () => setCount(count - 1);
-  const Reset = () => setCount(0);
+  const colors = ["#000", "#1a1a1a", "#222", "#333", "#444", "#5500aa", "#008000", "#990000"];
+
+  const changeBg = () => {
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    console.log(randomColor);
+    
+    setBgColor(randomColor);
+  };
+
+  const Increment = () => {
+    setCount(count + 1);
+    changeBg();
+  };
+
+  const Decrement = () => {
+    setCount(count - 1);
+    changeBg();
+  };
+
+  const Reset = () => {
+    setCount(0);
+    changeBg();
+  };
 
   return (
-    <div className="parent">
+    <div className="parent" style={{ backgroundColor: bgColor }}>
       <div className="card">
         <h1>Counter App</h1>
         <h2>{count}</h2>
